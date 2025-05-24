@@ -1,0 +1,156 @@
+body {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+h1 {
+  color: #f9c74f;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background-color: #f9c74f;
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #f9844a;
+  color: #000;
+}
+
+.card {
+  background-color: #1f1f1f;
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+}
+
+.card-title {
+  color: #f9c74f;
+  font-size: 1.25rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.card-footer {
+  background-color: transparent;
+  border-top: none;
+}
+
+.card-footer .btn {
+  font-weight: bold;
+}
+
+.btn-outline-primary {
+  border-color: #f9c74f;
+  color: #f9c74f;
+}
+
+.btn-outline-primary:hover {
+  background-color: #f9c74f;
+  color: #000;
+}
+
+.btn-outline-danger {
+  border-color: #f94144;
+  color: #f94144;
+}
+
+.btn-outline-danger:hover {
+  background-color: #f94144;
+  color: #fff;
+}
+
+/* Modal com fundo escuro e bordas arredondadas */
+.modal-content {
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Título da modal */
+.modal-title {
+  color: #f9c74f;
+  font-weight: 600;
+}
+
+/* Inputs */
+.form-control {
+  background-color: #2b2b2b;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.form-control:focus {
+  background-color: #2b2b2b;
+  color: #fff;
+  border-color: #f9c74f;
+  box-shadow: 0 0 0 0.2rem rgba(249, 199, 79, 0.25);
+}
+
+/* Label */
+.form-label {
+  color: #ddd;
+  font-weight: 500;
+}
+
+/* Preview da imagem */
+.drag-area {
+  border-style: dashed;
+  border-color: #ced4da;
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.drag-area.dragging {
+  border-color: #f9c74f !important;
+  background-color: rgba(249, 199, 79, 0.1) !important;
+}
+
+.drag-area p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+/* Botões */
+.modal-footer .btn-secondary {
+  background-color: #444;
+  border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #666;
+  color: #fff;
+}
+
+.modal-footer .btn-primary {
+  background-color: #f9c74f;
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #f9844a;
+  color: #000;
+}
