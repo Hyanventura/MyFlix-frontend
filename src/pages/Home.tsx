@@ -6,33 +6,31 @@ import {
   EditOutlined,
   StarFilled,
 } from "@ant-design/icons";
-import { Filme, useModal } from "../context/ModalContext";
+import { useModal } from "../context/ModalContext";
 import { useEffect } from "react";
 import { getFilmes } from "../services/api";
-import { useState } from "react";
 
 export const Home = () => {
-  const { setModalVisible, dataSource, setModalExcluirVisible } = useModal();
-  const [filmes, setFilmes] = useState<Filme[]>([]);
-
+  const { setModalVisible, dataSource, setModalExcluirVisible, setDataSource, setSelectedFilme} = useModal();
+  
   // GET FILMES
   useEffect(() => {
     getFilmes().then((data) => {
-      console.log(data);
-      setFilmes(data);
+      setDataSource(data);
     });
-  }, [dataSource]);
+  }, [dataSource, setDataSource]);
+  
 
   return (
     <div className="container mt-4">
       <h1 className="mb-4">🎬 MyFlix</h1>
-      <Button variant="primary" onClick={() => setModalVisible(true)}>
+      <Button variant="primary" onClick={() => {setSelectedFilme(null); setModalVisible(true)}}>
         Adicionar Filme
       </Button>
 
       {/* Cards */}
       <Row className="mt-4" xs={1} sm={2} md={3} lg={4}>
-        {filmes.map((filme) => (
+        {dataSource.map((filme) => (
           <Col key={filme?.id} className="mb-4">
             <Card>
               <Card.Img
@@ -60,14 +58,20 @@ export const Home = () => {
                 <Card.Footer className="d-flex justify-content-between gap-2">
                   <Button
                     variant="outline-primary"
-                    onClick={() => setModalVisible(true)}
+                    onClick={() => {
+                      setSelectedFilme(filme);
+                      setModalVisible(true);
+                    }}
                     size="sm"
                   >
                     <EditOutlined />
                   </Button>
                   <Button
                     variant="outline-danger"
-                    onClick={() => setModalExcluirVisible(true)}
+                    onClick={() => {
+                      setSelectedFilme(filme);
+                      setModalExcluirVisible(true);
+                    }}
                     size="sm"
                   >
                     <DeleteOutlined />
