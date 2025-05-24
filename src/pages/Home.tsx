@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Card, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Card, Row, Col, Form } from "react-bootstrap";
 import {
   CalendarOutlined,
   DeleteOutlined,
@@ -9,10 +9,16 @@ import {
 import { useModal } from "../context/ModalContext";
 import { useEffect } from "react";
 import { getFilmes } from "../services/api";
+import { Input } from "antd";
 
 export const Home = () => {
   const { setModalVisible, dataSource, setModalExcluirVisible, setDataSource, setSelectedFilme} = useModal();
-  
+  const [filter, setFilter] = useState("");
+
+  const filteredDataSource = dataSource.filter((filme) =>
+    filme.nome.toLowerCase().includes(filter.toLowerCase())
+  );
+
   // GET FILMES
   useEffect(() => {
     getFilmes().then((data) => {
@@ -24,13 +30,26 @@ export const Home = () => {
   return (
     <div className="container mt-4">
       <h1 className="mb-4">🎬 MyFlix</h1>
-      <Button variant="primary" onClick={() => {setSelectedFilme(null); setModalVisible(true)}}>
-        Adicionar Filme
-      </Button>
+      <Row>
+        <Col>
+          <Button variant="primary" onClick={() => {setSelectedFilme(null); setModalVisible(true)}}>
+            Adicionar Filme
+          </Button>
+        </Col> 
+        <Col md="auto" className="ms-auto">
+          <Form.Control
+            type="text"
+            placeholder="🔍 Pesquisar filmes"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="search-input"
+          />
+        </Col>
+      </Row>
 
       {/* Cards */}
       <Row className="mt-4" xs={1} sm={2} md={3} lg={4}>
-        {dataSource.map((filme) => (
+        {filteredDataSource.map((filme) => (
           <Col key={filme?.id} className="mb-4">
             <Card>
               <Card.Img
