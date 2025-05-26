@@ -196,7 +196,7 @@ export const ModalAdicionar = () => {
     <>
     {contextHolder}
     <Modal show={modalVisible} onHide={() => setModalVisible(false)}>
-      <Form>
+      <Form onSubmit={selectedFilme ? handleUpdateFilme : handleAdicionarFilme}> 
         <Modal.Header closeButton>
           <Modal.Title>Adicionar Novo Filme</Modal.Title>
         </Modal.Header>
@@ -209,6 +209,8 @@ export const ModalAdicionar = () => {
               onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
               value={formData.nome}
               required
+              onInvalid={(e) => e.currentTarget.setCustomValidity("Por favor, insira o nome do filme.")}
+              onInput={(e) => e.currentTarget.setCustomValidity("")}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -222,6 +224,8 @@ export const ModalAdicionar = () => {
               max="10"
               step="0.1"
               required
+              onInvalid={(e) => e.currentTarget.setCustomValidity("Por favor, insira a nota do filme.")}
+              onInput={(e) => e.currentTarget.setCustomValidity("")}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -234,6 +238,8 @@ export const ModalAdicionar = () => {
               min="1900"
               max="2100"
               required
+              onInvalid={(e) => e.currentTarget.setCustomValidity("Por favor, insira o ano do filme.")}
+              onInput={(e) => e.currentTarget.setCustomValidity("")}
               />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -262,6 +268,8 @@ export const ModalAdicionar = () => {
                 accept="image/jpeg, image/png"
                 onChange={handleFileChange}
                 style={{ display: 'none' }}
+                required
+                onInput={(e) => e.currentTarget.setCustomValidity("")}
               />
             </div>
             {formData.foto && (
@@ -280,7 +288,7 @@ export const ModalAdicionar = () => {
           <Button disabled={loading} variant="secondary" onClick={() => setModalVisible(false)}>
             Cancelar
           </Button>
-          <Button disabled={loading} onClick={selectedFilme ? handleUpdateFilme : handleAdicionarFilme} variant="primary" type="submit">
+          <Button disabled={loading} variant="primary" type="submit">
             Salvar
           </Button>
         </Modal.Footer>

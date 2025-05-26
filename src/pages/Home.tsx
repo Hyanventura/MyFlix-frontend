@@ -9,7 +9,6 @@ import {
 import { useModal } from "../context/ModalContext";
 import { useEffect } from "react";
 import { getFilmes } from "../services/api";
-import { Input } from "antd";
 
 export const Home = () => {
   const { setModalVisible, dataSource, setModalExcluirVisible, setDataSource, setSelectedFilme} = useModal();
@@ -56,8 +55,14 @@ export const Home = () => {
                 variant="top"
                 src={filme?.foto}
                 alt={filme?.nome}
-                style={{ maxHeight: "385px", objectFit: "cover" }}
+                style={{
+                  height: "385px",
+                  width: "100%",
+                  objectFit: "cover",
+                  backgroundColor: "#333",
+                }}
               />
+
               <Card.Body>
                 <Card.Title>{filme?.nome}</Card.Title>
                 <Card.Text className="d-flex flex-horizontal">
