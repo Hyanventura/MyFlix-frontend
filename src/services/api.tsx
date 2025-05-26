@@ -9,20 +9,17 @@ const api = axios.create({
 export const getFilmes = async () => {
   try {
     const response = await api.get("/filmes");
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.code === "ERR_NETWORK") {
-        console.error("Erro de conexão: Verifique se o servidor está rodando");
-      } else if (error.response) {
-        console.error(`Erro ${error.response.status}: ${error.response.data.message || "Erro desconhecido"}`);
-      } else {
-        console.error("Erro na requisição:", error.message);
-      }
+    const data = response.data;
+
+    if (Array.isArray(data)) {
+      return data;
     } else {
-      console.error("Erro desconhecido:", error);
+      return [];
     }
-    throw error;
+
+  } catch (error) {
+    console.error("Erro no ao listar filmes:", error);
+    return []; // Evita quebrar a aplicação
   }
 };
 

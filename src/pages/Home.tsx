@@ -19,7 +19,8 @@ export const Home = () => {
     getFilmes().then((data) => {
       setDataSource(data);
     });
-  }, [dataSource, setDataSource]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataSource]);
 
   if (!dataSource) {
     return <div>Carregando...</div>;
