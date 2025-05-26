@@ -16,10 +16,12 @@ export const Home = () => {
   // GET FILMES
 
   useEffect(() => {
-    getFilmes().then((data) => {
-      setDataSource(data);
-    });
-  }, [dataSource, setDataSource]);
+  const fetchFilmes = async () => {
+    const data = await getFilmes();
+    setDataSource(data);
+  };
+  fetchFilmes();
+}, [dataSource.length]);
 
   if (!dataSource) {
     return <div>Carregando...</div>;
