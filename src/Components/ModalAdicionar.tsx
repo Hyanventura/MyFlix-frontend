@@ -260,7 +260,7 @@ export const ModalAdicionar = () => {
                 transition: 'all 0.3s'
               }}
             >
-              <p style={{ color: isDragging ? '#f9c74f' : '#495057'}}>Clique ou arraste uma imagem aqui</p>
+              <div style={{ color: isDragging ? '#f9c74f' : '#495057'}}>Clique ou arraste uma imagem aqui</div>
               <Form.Control
                 ref={fileInputRef}
                 type="file"
