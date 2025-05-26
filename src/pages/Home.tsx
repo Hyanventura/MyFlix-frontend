@@ -21,9 +21,9 @@ export const Home = () => {
     });
   }, [dataSource, setDataSource]);
   
-  const filteredDataSource = dataSource?.filter((filme) =>
+  const filteredDataSource = dataSource ? dataSource?.filter((filme) =>
     filme.nome.toLowerCase().includes(filter.toLowerCase())
-  );
+  ): [];
   
   return (
     <div className="container mt-4">
