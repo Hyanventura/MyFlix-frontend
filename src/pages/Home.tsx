@@ -13,19 +13,18 @@ import { getFilmes } from "../services/api";
 export const Home = () => {
   const { setModalVisible, dataSource, setModalExcluirVisible, setDataSource, setSelectedFilme} = useModal();
   const [filter, setFilter] = useState("");
-
-  const filteredDataSource = dataSource.filter((filme) =>
-    filme.nome.toLowerCase().includes(filter.toLowerCase())
-  );
-
   // GET FILMES
+
   useEffect(() => {
     getFilmes().then((data) => {
       setDataSource(data);
     });
   }, [dataSource, setDataSource]);
   
-
+  const filteredDataSource = dataSource?.filter((filme) =>
+    filme.nome.toLowerCase().includes(filter.toLowerCase())
+  );
+  
   return (
     <div className="container mt-4">
       <h1 className="mb-4">🎬 MyFlix</h1>
