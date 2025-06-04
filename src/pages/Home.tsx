@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { getFilmes } from "../services/api";
 
 export const Home = () => {
-  const { setModalVisible, dataSource, setModalExcluirVisible, setDataSource, setSelectedFilme} = useModal();
+  const { setModalVisible, dataSource, setModalExcluirVisible, setDataSource, setSelectedFilme, setIsEditing} = useModal();
   const [filter, setFilter] = useState("");
   // GET FILMES
 
@@ -55,7 +55,7 @@ export const Home = () => {
       <Row className="mt-4" xs={1} sm={2} md={3} lg={4}>
         {filteredDataSource.map((filme) => (
           <Col key={filme?.id} className="mb-4">
-            <Card>
+            <Card style={{ width: "100%", height: "100%" }}>
               <Card.Img
                 variant="top"
                 src={filme?.foto}
@@ -89,6 +89,7 @@ export const Home = () => {
                     variant="outline-primary"
                     onClick={() => {
                       setSelectedFilme(filme);
+                      setIsEditing(true);
                       setModalVisible(true);
                     }}
                     size="sm"

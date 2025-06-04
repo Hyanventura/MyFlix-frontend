@@ -6,7 +6,7 @@ import { message } from "antd";
 import { compressImage } from "../utils/CompressImage";
 
 export const ModalAdicionar = () => {
-  const { setModalVisible, modalVisible, dataSource, setDataSource, selectedFilme } = useModal();
+  const { setModalVisible, modalVisible, dataSource, setDataSource, selectedFilme, isEditing } = useModal();
   const [messageApi, contextHolder] = message.useMessage();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -191,6 +191,7 @@ export const ModalAdicionar = () => {
       });
     }
   }, [convertToBase64, messageApi]);
+  
 
   return (
     <>
@@ -267,8 +268,8 @@ export const ModalAdicionar = () => {
                 name="foto"
                 accept="image/jpeg, image/png"
                 onChange={handleFileChange}
-                style={{ display: 'none' }}
-                required
+                required={isEditing}
+                style={{ visibility: 'hidden', position: 'absolute' }}
                 onInput={(e) => e.currentTarget.setCustomValidity("")}
               />
             </div>
