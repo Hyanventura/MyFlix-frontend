@@ -69,7 +69,14 @@ export const Home = () => {
               />
 
               <Card.Body>
-                <Card.Title>{filme?.nome}</Card.Title>
+                <Card.Title 
+                  className="text-truncate" 
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="top" 
+                  title={filme?.nome}
+                  >
+                    {filme?.nome}
+                  </Card.Title>
                 <Card.Text className="d-flex flex-horizontal">
                   <Col style={{ display: "flex", justifyContent: "center" }}>
                     <CalendarOutlined
